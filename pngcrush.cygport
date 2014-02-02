@@ -1,0 +1,21 @@
+NAME="pngcrush"
+VERSION=1.7.70
+RELEASE=1
+CATEGORY="Graphics"
+SUMMARY="PNG optimizer"
+DESCRIPTION="Pngcrush is an optimizer for PNG (Portable Network Graphics)
+files.  Its main purpose is to reduce the size of the PNG IDAT datastream by
+trying various compression levels an PNG filter methods. It also can be used
+to remove unwanted ancillary chunks, or to add certain chunks including gAMA,
+tRNS, iCCP, and textual chunks."
+HOMEPAGE="http://pmt.sourceforge.net/pngcrush/"
+SRC_URI="mirror://sourceforge/pmt/pngcrush-${VERSION}.tar.xz"
+
+src_compile() {
+	cd ${B}
+	ln -sf ${S}/Makefile-nolib Makefile
+	ln -sf ${S}/{pngcrush.c,cexcept.h} .
+	cygmake CC=${CC} CFLAGS="${CFLAGS}"
+}
+
+DOCS="ChangeLog.html"
